@@ -5,381 +5,567 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ADS — FEPI Itajubá</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
-    --black: #0a0a0a;
-    --off-black: #111111;
-    --gold: #F5C518;
-    --white: #ffffff;
-    --gray: #888888;
-    --section-pad: clamp(80px, 10vw, 140px);
-  }
+:root {
+  --bg: #08080f;
+  --bg2: #0e0e1a;
+  --purple: #7c3aed;
+  --purple-light: #a855f7;
+  --cyan: #06b6d4;
+  --cyan-light: #67e8f9;
+  --gold: #f5c518;
+  --white: #ffffff;
+  --muted: rgba(255,255,255,0.5);
+  --border: rgba(255,255,255,0.07);
+}
 
-  html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; }
 
-  body {
-    background: var(--black);
-    color: var(--white);
-    font-family: 'Inter', sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
 
-  /* ── NAV ── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px 48px;
-    background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent);
-  }
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 48px;
+  background: rgba(8,8,15,0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
 
-  .nav-logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-  }
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
 
-  .logo-badge {
-    width: 36px;
-    height: 36px;
-    background: var(--gold);
-    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-  }
+.logo-badge {
+  width: 32px; height: 32px;
+  background: linear-gradient(135deg, var(--gold), #d4a017);
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
 
-  .logo-text {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    color: var(--white);
-  }
+.logo-text {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 20px; font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--white);
+  line-height: 1;
+}
 
-  .logo-text span {
-    display: block;
-    font-size: 10px;
-    font-weight: 400;
-    font-family: 'Inter', sans-serif;
-    letter-spacing: 0.12em;
-    color: var(--gray);
-    text-transform: uppercase;
-  }
+.logo-text small {
+  display: block;
+  font-size: 9px; font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-top: 2px;
+}
 
-  .nav-cta {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--black);
-    background: var(--gold);
-    border: none;
-    padding: 10px 24px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: opacity .2s;
-  }
-  .nav-cta:hover { opacity: .8; }
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-links a {
+  font-size: 13px; font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: color .2s;
+}
+.nav-links a:hover { color: var(--white); }
 
-  /* ── HERO ── */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 120px 48px 80px;
-    position: relative;
-    overflow: hidden;
-  }
+.nav-cta {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: linear-gradient(135deg, var(--purple), var(--cyan));
+  border: none;
+  padding: 10px 22px;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity .2s;
+}
+.nav-cta:hover { opacity: .85; }
 
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 60% 60% at 80% 50%, rgba(245,197,24,.06) 0%, transparent 70%),
-      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(245,197,24,.04) 0%, transparent 60%);
-    pointer-events: none;
-  }
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 120px 48px 80px;
+  position: relative;
+  overflow: hidden;
+}
 
-  .hero-eyebrow {
-    font-size: 11px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 24px;
-  }
+.hero-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 55% 55% at 70% 40%, rgba(124,58,237,.18) 0%, transparent 65%),
+    radial-gradient(ellipse 35% 35% at 20% 75%, rgba(6,182,212,.12) 0%, transparent 60%);
+}
 
-  .hero-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(56px, 10vw, 128px);
-    font-weight: 900;
-    line-height: 0.92;
-    text-transform: uppercase;
-    max-width: 820px;
-  }
+/* animated grid */
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+}
 
-  .hero-title em {
-    font-style: normal;
-    color: transparent;
-    -webkit-text-stroke: 1px rgba(255,255,255,0.25);
-  }
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 28px;
+}
 
-  .hero-sub {
-    margin-top: 40px;
-    max-width: 440px;
-    color: rgba(255,255,255,0.6);
-    font-size: 15px;
-    line-height: 1.7;
-  }
+.hero-eyebrow::before {
+  content: '';
+  width: 28px; height: 1px;
+  background: var(--cyan);
+}
 
-  .hero-cta {
-    display: inline-block;
-    margin-top: 48px;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--black);
-    background: var(--gold);
-    padding: 16px 40px;
-    text-decoration: none;
-    transition: opacity .2s;
-  }
-  .hero-cta:hover { opacity: .85; }
+.hero-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(58px, 10vw, 130px);
+  font-weight: 900;
+  line-height: 0.9;
+  text-transform: uppercase;
+  max-width: 860px;
+}
 
-  /* ── DIVIDER ── */
-  .divider {
-    width: 100%;
-    height: 1px;
-    background: rgba(255,255,255,0.07);
-    margin: 0 48px;
-    width: calc(100% - 96px);
-  }
+.hero-title .outline {
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(168,85,247,.5);
+}
 
-  /* ── SECTIONS ── */
-  section {
-    padding: var(--section-pad) 48px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
+.hero-title .grad {
+  background: linear-gradient(90deg, var(--purple-light), var(--cyan-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 
-  .section-number {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 20px;
-  }
+.hero-sub {
+  margin-top: 36px;
+  max-width: 420px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.75;
+}
 
-  .section-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(36px, 5vw, 64px);
-    font-weight: 900;
-    text-transform: uppercase;
-    line-height: 1;
-    margin-bottom: 32px;
-  }
+.hero-btns {
+  display: flex;
+  gap: 16px;
+  margin-top: 48px;
+  flex-wrap: wrap;
+}
 
-  .section-body {
-    color: rgba(255,255,255,0.65);
-    font-size: 16px;
-    line-height: 1.8;
-    max-width: 560px;
-  }
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 14px; font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: linear-gradient(135deg, var(--purple), var(--cyan));
+  padding: 14px 32px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: opacity .2s, transform .2s;
+}
+.btn-primary:hover { opacity: .9; transform: translateY(-2px); }
 
-  /* two-col layout */
-  .two-col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-  }
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 14px; font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 14px 32px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: border-color .2s, transform .2s;
+}
+.btn-ghost:hover { border-color: rgba(255,255,255,.4); transform: translateY(-2px); }
 
-  .two-col.reverse { direction: rtl; }
-  .two-col.reverse > * { direction: ltr; }
+/* hero stats */
+.hero-stats {
+  display: flex;
+  gap: 48px;
+  margin-top: 64px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border);
+}
 
-  /* ── CARDS ── */
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 2px;
-    margin-top: 48px;
-  }
+.stat-val {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 36px; font-weight: 900;
+  background: linear-gradient(90deg, var(--purple-light), var(--cyan-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 
-  .card {
-    background: var(--off-black);
-    padding: 40px 32px;
-    border-top: 2px solid var(--gold);
-    transition: background .2s;
-  }
-  .card:hover { background: #1a1a1a; }
+.stat-label {
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  margin-top: 4px;
+}
 
-  .card-icon {
-    font-size: 28px;
-    margin-bottom: 20px;
-  }
+/* ── SECTIONS ── */
+.section {
+  padding: clamp(64px, 9vw, 120px) 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
-  .card-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 22px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    margin-bottom: 12px;
-  }
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--purple-light);
+  background: rgba(124,58,237,.12);
+  border: 1px solid rgba(124,58,237,.25);
+  padding: 5px 12px;
+  border-radius: 100px;
+  margin-bottom: 24px;
+}
 
-  .card-text {
-    font-size: 14px;
-    color: rgba(255,255,255,0.55);
-    line-height: 1.7;
-  }
+.section-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(34px, 5vw, 60px);
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 1;
+  margin-bottom: 20px;
+}
 
-  /* ── HIGHLIGHT BOX ── */
-  .highlight-box {
-    border-left: 3px solid var(--gold);
-    padding: 32px 40px;
-    background: rgba(245,197,24,0.04);
-    margin-top: 48px;
-    max-width: 700px;
-  }
+.section-lead {
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.8;
+  max-width: 540px;
+}
 
-  .highlight-box p {
-    font-size: 18px;
-    line-height: 1.7;
-    color: rgba(255,255,255,0.8);
-  }
+/* ── CARDS GRID ── */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+  margin-top: 48px;
+}
 
-  /* ── CAREERS LIST ── */
-  .careers {
-    margin-top: 48px;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
+.card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 36px 28px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color .25s, transform .25s;
+}
 
-  .career-item {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    padding: 24px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-  }
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--purple), var(--cyan));
+  opacity: 0;
+  transition: opacity .25s;
+}
 
-  .career-num {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 13px;
-    color: var(--gold);
-    letter-spacing: 0.1em;
-    min-width: 32px;
-  }
+.card:hover { border-color: rgba(124,58,237,.4); transform: translateY(-4px); }
+.card:hover::before { opacity: 1; }
 
-  .career-name {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 20px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    flex: 1;
-  }
+.card-icon-wrap {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  background: rgba(124,58,237,.15);
+  border: 1px solid rgba(124,58,237,.25);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px;
+}
 
-  /* ── CTA SECTION ── */
-  .cta-section {
-    padding: var(--section-pad) 48px;
-    background: var(--gold);
-    color: var(--black);
-    text-align: center;
-  }
+.card-icon-wrap svg { width: 22px; height: 22px; }
 
-  .cta-section .section-title {
-    color: var(--black);
-    max-width: 700px;
-    margin: 0 auto 24px;
-  }
+.card-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 20px; font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 10px;
+}
 
-  .cta-section p {
-    font-size: 16px;
-    max-width: 500px;
-    margin: 0 auto 40px;
-    opacity: .75;
-  }
+.card-text {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.7;
+}
 
-  .cta-btn {
-    display: inline-block;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--gold);
-    background: var(--black);
-    padding: 16px 48px;
-    text-decoration: none;
-    transition: opacity .2s;
-  }
-  .cta-btn:hover { opacity: .85; }
+/* ── TWO-COL ── */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
 
-  /* ── FOOTER ── */
-  footer {
-    padding: 40px 48px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-top: 1px solid rgba(255,255,255,0.07);
-  }
+/* ── QUOTE BOX ── */
+.quote-box {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--purple-light);
+  border-radius: 12px;
+  padding: 36px 40px;
+}
 
-  .footer-brand {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-  }
+.quote-box p {
+  font-size: 17px;
+  line-height: 1.75;
+  color: rgba(255,255,255,.8);
+}
 
-  .footer-brand span {
-    color: var(--gold);
-  }
+/* ── CREATE ITEMS ── */
+.create-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 32px;
+}
 
-  footer p {
-    font-size: 12px;
-    color: var(--gray);
-  }
+.create-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  transition: border-color .2s;
+}
+.create-item:hover { border-color: rgba(6,182,212,.3); }
 
-  /* ── REVEAL ANIMATION ── */
-  .reveal {
-    opacity: 0;
-    transform: translateY(32px);
-    transition: opacity .7s ease, transform .7s ease;
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: none;
-  }
+.create-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--purple-light), var(--cyan));
+  flex-shrink: 0;
+}
 
-  @media (max-width: 768px) {
-    nav { padding: 16px 24px; }
-    .nav-cta { display: none; }
-    .hero { padding: 100px 24px 60px; }
-    section { padding: 60px 24px; }
-    .two-col { grid-template-columns: 1fr; gap: 40px; }
-    .two-col.reverse { direction: ltr; }
-    .divider { margin: 0 24px; width: calc(100% - 48px); }
-    footer { flex-direction: column; gap: 12px; text-align: center; }
-    .cta-section { padding: 60px 24px; }
-  }
+.create-item span {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255,255,255,.8);
+}
 
-  @media (prefers-reduced-motion: reduce) {
-    .reveal { transition: none; }
-  }
+/* ── CAREERS ── */
+.careers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
+  margin-top: 40px;
+}
+
+.career-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: border-color .2s, transform .2s;
+}
+.career-card:hover { border-color: rgba(124,58,237,.35); transform: translateX(4px); }
+
+.career-icon {
+  width: 40px; height: 40px; flex-shrink: 0;
+  border-radius: 10px;
+  background: rgba(124,58,237,.12);
+  border: 1px solid rgba(124,58,237,.2);
+  display: flex; align-items: center; justify-content: center;
+}
+.career-icon svg { width: 18px; height: 18px; }
+
+.career-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 18px; font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ── WHO SECTION ── */
+.who-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.who-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px 24px;
+  text-align: center;
+  transition: border-color .25s, transform .25s;
+}
+.who-card:hover { border-color: rgba(6,182,212,.35); transform: translateY(-4px); }
+
+.who-icon {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: rgba(6,182,212,.1);
+  border: 1px solid rgba(6,182,212,.25);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px;
+}
+.who-icon svg { width: 24px; height: 24px; }
+
+.who-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 18px; font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 10px;
+}
+
+.who-text {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+/* ── CTA BANNER ── */
+.cta-banner {
+  margin: 0 48px 80px;
+  border-radius: 20px;
+  padding: clamp(48px, 7vw, 80px) 48px;
+  background: linear-gradient(135deg, #1e0a3c 0%, #0a1f2e 100%);
+  border: 1px solid rgba(124,58,237,.3);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-banner::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 50% 70% at 30% 50%, rgba(124,58,237,.2), transparent),
+    radial-gradient(ellipse 50% 70% at 70% 50%, rgba(6,182,212,.15), transparent);
+  pointer-events: none;
+}
+
+.cta-banner .section-title {
+  font-size: clamp(36px, 5vw, 64px);
+  max-width: 680px;
+  margin: 0 auto 16px;
+}
+
+.cta-banner p {
+  color: var(--muted);
+  font-size: 15px;
+  max-width: 460px;
+  margin: 0 auto 36px;
+  line-height: 1.7;
+}
+
+/* ── FOOTER ── */
+footer {
+  padding: 32px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border);
+}
+
+.footer-brand {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px; font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.footer-brand .accent { color: var(--purple-light); }
+
+footer small {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ── REVEAL ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .65s ease, transform .65s ease;
+}
+.reveal.visible { opacity: 1; transform: none; }
+
+/* stagger children */
+.stagger .reveal:nth-child(2) { transition-delay: .1s; }
+.stagger .reveal:nth-child(3) { transition-delay: .2s; }
+.stagger .reveal:nth-child(4) { transition-delay: .3s; }
+
+@media (max-width: 900px) {
+  nav { padding: 14px 24px; }
+  .nav-links { display: none; }
+  .hero { padding: 100px 24px 60px; }
+  .hero-stats { gap: 28px; }
+  .section { padding: 56px 24px; }
+  .two-col { grid-template-columns: 1fr; gap: 36px; }
+  .who-grid { grid-template-columns: 1fr 1fr; }
+  .cta-banner { margin: 0 24px 60px; padding: 48px 24px; }
+  footer { flex-direction: column; gap: 10px; text-align: center; padding: 28px 24px; }
+}
+
+@media (max-width: 540px) {
+  .who-grid { grid-template-columns: 1fr; }
+  .hero-stats { flex-wrap: wrap; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { transition: none; }
+}
 </style>
 </head>
 <body>
@@ -390,178 +576,272 @@
     <div class="logo-badge"></div>
     <div class="logo-text">
       fepi
-      <span>Centro Universitário de Itajubá</span>
+      <small>Centro Universitário de Itajubá</small>
     </div>
   </a>
-  <a class="nav-cta" href="https://www.fepi.br" target="_blank">Saiba mais</a>
+  <div class="nav-links">
+    <a href="#aprender">O que vou aprender</a>
+    <a href="#mercado">Mercado</a>
+    <a href="#para-quem">Para quem</a>
+  </div>
+  <a class="nav-cta" href="https://www.fepi.br" target="_blank">fepi.br</a>
 </nav>
 
 <!-- HERO -->
-<section class="hero">
+<div class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-grid"></div>
+
   <p class="hero-eyebrow reveal">Apresentação do Curso · FEPI Itajubá</p>
   <h1 class="hero-title reveal">
-    Análise e<br>
-    <em>Desenvolvimento</em><br>
+    <span class="grad">Análise</span> e<br>
+    <span class="outline">Desenvolvimento</span><br>
     de Sistemas
   </h1>
   <p class="hero-sub reveal">
-    Transforme sua curiosidade por tecnologia em uma carreira.
-    Aprenda a criar soluções que fazem parte do nosso dia a dia.
+    Transforme sua curiosidade por tecnologia em uma carreira real.
+    No ADS você cria, programa e resolve problemas do mundo.
   </p>
-  <a class="hero-cta reveal" href="#por-que">Conheça o curso</a>
-</section>
 
-<div class="divider"></div>
+  <div class="hero-btns reveal">
+    <a class="btn-primary" href="#aprender">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      Conheça o curso
+    </a>
+    <a class="btn-ghost" href="https://www.fepi.br" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      fepi.br
+    </a>
+  </div>
+
+  <div class="hero-stats reveal">
+    <div>
+      <div class="stat-val">2,5 anos</div>
+      <div class="stat-label">Duração do curso</div>
+    </div>
+    <div>
+      <div class="stat-val">100%</div>
+      <div class="stat-label">Presencial em Itajubá</div>
+    </div>
+    <div>
+      <div class="stat-val">+∞</div>
+      <div class="stat-label">Possibilidades de carreira</div>
+    </div>
+  </div>
+</div>
 
 <!-- POR QUE ADS -->
-<section id="por-que">
+<div class="section" id="por-que">
   <div class="two-col">
     <div>
-      <p class="section-number reveal">01 — Por que escolher ADS?</p>
-      <h2 class="section-title reveal">A tecnologia<br>está em todo<br>lugar.</h2>
+      <div class="section-tag reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M9.663 17h4.673M12 3v1m6.364 1.636-.707.707M21 12h-1M4 12H3m3.343-5.657-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        Por que escolher ADS?
+      </div>
+      <h2 class="section-title reveal">A tecnologia<br>está em<br>tudo.</h2>
     </div>
     <div>
-      <div class="highlight-box reveal">
+      <div class="quote-box reveal">
         <p>
-          O curso de Análise e Desenvolvimento de Sistemas é a escolha ideal para quem gosta de tecnologia
-          e quer transformar esse interesse em profissão. Durante o curso, você aprende a criar soluções
-          que fazem parte do nosso dia a dia.
+          O curso de Análise e Desenvolvimento de Sistemas é ideal para quem gosta de tecnologia
+          e quer transformar esse interesse em profissão. Você aprende a criar soluções que
+          fazem parte do dia a dia de milhões de pessoas.
         </p>
       </div>
     </div>
   </div>
-</section>
+</div>
 
-<div class="divider"></div>
-
-<!-- O QUE VOCÊ VAI APRENDER -->
-<section id="aprender">
-  <p class="section-number reveal">02 — O que você vai aprender?</p>
+<!-- O QUE VAI APRENDER -->
+<div class="section" id="aprender">
+  <div class="section-tag reveal">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+    O que você vai aprender
+  </div>
   <h2 class="section-title reveal">Grade do<br>curso</h2>
-  <div class="cards">
+
+  <div class="cards stagger">
     <div class="card reveal">
-      <div class="card-icon">⌨️</div>
+      <div class="card-icon-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      </div>
       <h3 class="card-title">Programação</h3>
-      <p class="card-text">Lógica, estruturas de dados e as principais linguagens utilizadas no mercado.</p>
+      <p class="card-text">Lógica, estruturas de dados e as linguagens mais usadas no mercado.</p>
     </div>
     <div class="card reveal">
-      <div class="card-icon">🌐</div>
+      <div class="card-icon-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+      </div>
       <h3 class="card-title">Desenvolvimento Web</h3>
-      <p class="card-text">Criação de sites modernos e sistemas completos para a web.</p>
+      <p class="card-text">Sites modernos, sistemas completos e interfaces para a web.</p>
     </div>
     <div class="card reveal">
-      <div class="card-icon">🗄️</div>
+      <div class="card-icon-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+      </div>
       <h3 class="card-title">Banco de Dados</h3>
-      <p class="card-text">Modelagem, criação e gerenciamento de bancos de dados relacionais e não-relacionais.</p>
+      <p class="card-text">Modelagem e gerenciamento de dados relacionais e não-relacionais.</p>
     </div>
     <div class="card reveal">
-      <div class="card-icon">🔧</div>
+      <div class="card-icon-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
       <h3 class="card-title">Engenharia de Software</h3>
-      <p class="card-text">Metodologias, boas práticas e processos de desenvolvimento profissional.</p>
+      <p class="card-text">Metodologias ágeis, boas práticas e processos profissionais.</p>
     </div>
   </div>
-</section>
-
-<div class="divider"></div>
+</div>
 
 <!-- O QUE VOCÊ PODERÁ CRIAR -->
-<section id="criar">
-  <div class="two-col reverse">
-    <div>
-      <p class="section-number reveal">03 — O que você poderá criar?</p>
-      <h2 class="section-title reveal">Ideias em<br>projetos reais.</h2>
-      <p class="section-body reveal">
-        Com os conhecimentos adquiridos durante o curso, é possível desenvolver sites, aplicativos,
-        sistemas e diversas outras soluções digitais. O estudante também pode criar seus próprios projetos,
-        transformar ideias em soluções reais e desenvolver sua criatividade e capacidade de resolver problemas.
-      </p>
-    </div>
-    <div><!-- decorativo --></div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- MERCADO DE TRABALHO -->
-<section id="mercado">
-  <p class="section-number reveal">04 — Mercado de trabalho</p>
-  <h2 class="section-title reveal">Onde você<br>pode atuar?</h2>
-  <div class="careers reveal">
-    <div class="career-item">
-      <span class="career-num">—</span>
-      <span class="career-name">Desenvolvedor de Software</span>
-    </div>
-    <div class="career-item">
-      <span class="career-num">—</span>
-      <span class="career-name">Analista de Sistemas</span>
-    </div>
-    <div class="career-item">
-      <span class="career-num">—</span>
-      <span class="career-name">Administrador de Banco de Dados</span>
-    </div>
-    <div class="career-item">
-      <span class="career-num">—</span>
-      <span class="career-name">Engenheiro de Qualidade / Testes</span>
-    </div>
-    <div class="career-item">
-      <span class="career-num">—</span>
-      <span class="career-name">Analista de Infraestrutura</span>
-    </div>
-  </div>
-  <p class="section-body reveal" style="margin-top:32px">
-    A área de tecnologia está presente em empresas de praticamente todos os setores e oferece
-    diversas oportunidades profissionais.
-  </p>
-</section>
-
-<div class="divider"></div>
-
-<!-- PARA QUEM É -->
-<section id="para-quem">
+<div class="section" id="criar">
   <div class="two-col">
     <div>
-      <p class="section-number reveal">05 — Para quem é o curso?</p>
-      <h2 class="section-title reveal">Não precisa<br>saber<br>programar.</h2>
+      <div class="section-tag reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        O que você poderá criar
+      </div>
+      <h2 class="section-title reveal">Ideias em<br>projetos<br>reais.</h2>
     </div>
     <div>
-      <div class="highlight-box reveal">
-        <p>
-          ADS é indicado para quem tem curiosidade, gosta de tecnologia e quer aprender a resolver problemas
-          de forma criativa. O curso prepara o estudante desde os fundamentos — nenhum conhecimento prévio
-          é necessário para começar.
-        </p>
+      <div class="create-list">
+        <div class="create-item reveal">
+          <div class="create-dot"></div>
+          <span>Sites e aplicações web completas</span>
+        </div>
+        <div class="create-item reveal">
+          <div class="create-dot"></div>
+          <span>Aplicativos mobile e desktop</span>
+        </div>
+        <div class="create-item reveal">
+          <div class="create-dot"></div>
+          <span>Sistemas de gestão e automações</span>
+        </div>
+        <div class="create-item reveal">
+          <div class="create-dot"></div>
+          <span>APIs e integrações entre plataformas</span>
+        </div>
+        <div class="create-item reveal">
+          <div class="create-dot"></div>
+          <span>Seus próprios projetos e startups</span>
+        </div>
       </div>
     </div>
   </div>
-</section>
+</div>
+
+<!-- MERCADO DE TRABALHO -->
+<div class="section" id="mercado">
+  <div class="section-tag reveal">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+    Mercado de trabalho
+  </div>
+  <h2 class="section-title reveal">Onde você<br>pode atuar?</h2>
+  <p class="section-lead reveal">Tecnologia está em todos os setores. Quem se forma em ADS tem oportunidades em qualquer área do mercado.</p>
+
+  <div class="careers">
+    <div class="career-card reveal">
+      <div class="career-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      </div>
+      <span class="career-name">Desenvolvedor de Software</span>
+    </div>
+    <div class="career-card reveal">
+      <div class="career-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </div>
+      <span class="career-name">Analista de Sistemas</span>
+    </div>
+    <div class="career-card reveal">
+      <div class="career-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+      </div>
+      <span class="career-name">Administrador de Banco de Dados</span>
+    </div>
+    <div class="career-card reveal">
+      <div class="career-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      </div>
+      <span class="career-name">Engenheiro de Qualidade / QA</span>
+    </div>
+    <div class="career-card reveal">
+      <div class="career-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      </div>
+      <span class="career-name">Analista de Infraestrutura</span>
+    </div>
+    <div class="career-card reveal">
+      <div class="career-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+      </div>
+      <span class="career-name">Gestor de TI / Product Owner</span>
+    </div>
+  </div>
+</div>
+
+<!-- PARA QUEM É -->
+<div class="section" id="para-quem">
+  <div class="section-tag reveal">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    Para quem é o curso
+  </div>
+  <h2 class="section-title reveal">Não precisa<br>saber<br>programar.</h2>
+
+  <div class="who-grid">
+    <div class="who-card reveal">
+      <div class="who-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+      </div>
+      <h3 class="who-title">Curioso</h3>
+      <p class="who-text">Você gosta de entender como as coisas funcionam por dentro e quer desvendar a tecnologia.</p>
+    </div>
+    <div class="who-card reveal">
+      <div class="who-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      </div>
+      <h3 class="who-title">Apaixonado por tech</h3>
+      <p class="who-text">Fica horas no computador, gosta de jogos, apps e quer criar as próprias soluções.</p>
+    </div>
+    <div class="who-card reveal">
+      <div class="who-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><path d="M9.663 17h4.673M12 3v1m6.364 1.636-.707.707M21 12h-1M4 12H3m3.343-5.657-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+      </div>
+      <h3 class="who-title">Resolvedor</h3>
+      <p class="who-text">Gosta de desafios e quer usar a criatividade para transformar ideias em projetos reais.</p>
+    </div>
+  </div>
+</div>
 
 <!-- CTA FINAL -->
-<div class="cta-section">
+<div class="cta-banner">
+  <div class="section-tag reveal" style="margin: 0 auto 24px; width: fit-content;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+    Próximo passo
+  </div>
   <h2 class="section-title reveal">Construa seu futuro<br>com tecnologia</h2>
   <p class="reveal">
-    No curso de ADS da FEPI Itajubá, você aprende, desenvolve projetos e se prepara para uma carreira
-    em uma das áreas mais dinâmicas do mercado.
+    No ADS da FEPI Itajubá você aprende, cria projetos reais e se prepara para
+    uma das carreiras mais bem pagas e em alta do mercado.
   </p>
-  <a class="cta-btn reveal" href="https://www.fepi.br" target="_blank">Acesse fepi.br</a>
+  <a class="btn-primary reveal" href="https://www.fepi.br" target="_blank" style="margin: 0 auto;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+    Acesse fepi.br
+  </a>
 </div>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-brand">fepi <span>·</span> ADS</div>
-  <p>Centro Universitário de Itajubá — Itajubá, MG</p>
+  <div class="footer-brand">fepi <span class="accent">·</span> ADS</div>
+  <small>Centro Universitário de Itajubá — Itajubá, MG</small>
 </footer>
 
 <script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12 });
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
 
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
 </body>
 </html>
