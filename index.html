@@ -4,568 +4,297 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ADS — FEPI Itajubá</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0b0b0b;
+  --paper:#f7f4ee;
+  --yellow:#F5C518;
+  --yellow-dark:#c9a010;
+  --white:#ffffff;
+  --muted:#6b6b6b;
+  --rule:rgba(0,0,0,0.10);
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--ink);color:var(--white);font-family:'Space Grotesk',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 
-:root {
-  --bg: #08080f;
-  --bg2: #0e0e1a;
-  --purple: #7c3aed;
-  --purple-light: #a855f7;
-  --cyan: #06b6d4;
-  --cyan-light: #67e8f9;
-  --gold: #f5c518;
-  --white: #ffffff;
-  --muted: rgba(255,255,255,0.5);
-  --border: rgba(255,255,255,0.07);
+/* ══ NAV ══ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:99;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 48px;height:64px;
+  background:rgba(11,11,11,0.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-logo img{height:32px;width:auto;filter:brightness(0) invert(1)}
+.nav-right{display:flex;align-items:center;gap:28px}
+.nav-right a{font-size:13px;font-weight:500;color:rgba(255,255,255,0.5);text-decoration:none;letter-spacing:0.02em;transition:color .2s}
+.nav-right a:hover{color:var(--white)}
+.nav-pill{
+  font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
+  background:var(--yellow);color:var(--ink);padding:8px 20px;border-radius:100px;
+  text-decoration:none;transition:transform .2s,background .2s;
+}
+.nav-pill:hover{background:var(--yellow-dark);transform:translateY(-1px)}
+
+/* ══ HERO ══ */
+.hero{
+  min-height:100svh;display:grid;
+  grid-template-columns:1fr 420px;
+  gap:0;align-items:stretch;
+  padding-top:64px;
+}
+.hero-left{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:80px 64px 80px 48px;
+  border-right:1px solid rgba(255,255,255,0.06);
+}
+.hero-kicker{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--yellow);margin-bottom:36px;
+}
+.hero-kicker span{display:block;width:20px;height:1px;background:var(--yellow)}
+.hero-h1{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:clamp(52px,7.5vw,100px);line-height:0.93;
+  letter-spacing:-0.02em;text-transform:uppercase;
+}
+.hero-h1 .line-thin{font-weight:700;color:rgba(255,255,255,0.25);display:block}
+.hero-h1 .line-accent{color:var(--yellow);display:block}
+.hero-desc{
+  margin-top:40px;max-width:420px;
+  font-size:16px;line-height:1.75;color:rgba(255,255,255,0.55);font-weight:300;
+}
+.hero-cta{
+  margin-top:52px;display:inline-flex;align-items:center;gap:12px;
+  font-family:'Syne',sans-serif;font-size:14px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;
+  background:var(--yellow);color:var(--ink);
+  padding:16px 36px;border-radius:100px;text-decoration:none;
+  width:fit-content;transition:transform .25s,background .25s;
+}
+.hero-cta:hover{transform:translateX(4px);background:var(--yellow-dark)}
+.hero-cta svg{transition:transform .25s}
+.hero-cta:hover svg{transform:translateX(4px)}
+
+.hero-right{
+  display:flex;flex-direction:column;justify-content:space-between;
+  padding:80px 48px 80px 48px;
+  background:rgba(255,255,255,0.02);
+}
+.hero-logo-big{
+  display:block;
+}
+.hero-logo-big img{
+  width:100%;max-width:220px;
+  filter:brightness(0) invert(1);opacity:0.9;
+}
+.hero-facts{display:flex;flex-direction:column;gap:0;margin-top:auto}
+.hero-fact{
+  padding:28px 0;
+  border-top:1px solid rgba(255,255,255,0.07);
+}
+.hero-fact:last-child{border-bottom:1px solid rgba(255,255,255,0.07)}
+.fact-num{
+  font-family:'Syne',sans-serif;font-size:42px;font-weight:800;
+  color:var(--yellow);line-height:1;letter-spacing:-0.02em;
+}
+.fact-label{font-size:12px;color:rgba(255,255,255,0.4);margin-top:4px;letter-spacing:0.04em}
+
+/* ══ SECTION BASE ══ */
+.s{padding:clamp(72px,9vw,120px) 48px;max-width:1280px;margin:0 auto}
+.s-full{padding:0;max-width:none;margin:0}
+
+/* ══ EYEBROW ══ */
+.eyebrow{
+  display:flex;align-items:center;gap:10px;
+  font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:24px;
+}
+.eyebrow-num{
+  font-family:'Syne',sans-serif;font-size:11px;color:var(--yellow);
 }
 
-html { scroll-behavior: smooth; }
+/* ══ BIG HEADING ══ */
+.big-h{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:clamp(36px,5vw,64px);line-height:1;
+  letter-spacing:-0.02em;text-transform:uppercase;
+}
+.big-h .y{color:var(--yellow)}
 
-body {
-  background: var(--bg);
-  color: var(--white);
-  font-family: 'Inter', sans-serif;
-  overflow-x: hidden;
+/* ══ WHY SECTION ══ */
+.why-wrap{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,0.06)}
+.why-cell{background:var(--ink);padding:72px 56px}
+.why-cell.alt{background:#0f0f0f}
+.why-text{font-size:18px;line-height:1.75;color:rgba(255,255,255,0.65);font-weight:300;margin-top:32px;max-width:480px}
+.why-icon{width:64px;height:64px;color:var(--yellow);margin-bottom:32px;display:block}
+
+/* ══ LEARN SECTION ══ */
+.learn-wrap{display:grid;grid-template-columns:340px 1fr;gap:0;min-height:480px}
+.learn-left{
+  background:var(--yellow);color:var(--ink);
+  padding:64px 48px;display:flex;flex-direction:column;justify-content:space-between;
+}
+.learn-left .big-h{color:var(--ink)}
+.learn-left p{font-size:14px;font-weight:500;color:rgba(0,0,0,0.55);line-height:1.7;margin-top:20px}
+.learn-right{background:#0f0f0f;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,0.05)}
+.learn-item{
+  background:#0f0f0f;padding:48px 40px;
+  border:none;transition:background .2s;
+}
+.learn-item:hover{background:#141414}
+.learn-item-icon{
+  width:48px;height:48px;color:var(--yellow);
+  margin-bottom:24px;display:block;
+}
+.learn-item h3{
+  font-family:'Syne',sans-serif;font-size:22px;font-weight:700;
+  letter-spacing:-0.01em;margin-bottom:12px;
+}
+.learn-item p{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.7}
+
+/* ══ CREATE SECTION ══ */
+.create-wrap{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.create-list{margin-top:48px;display:flex;flex-direction:column;gap:0}
+.create-row{
+  display:flex;align-items:center;gap:24px;
+  padding:22px 0;border-bottom:1px solid rgba(255,255,255,0.07);
+  transition:padding-left .2s;cursor:default;
+}
+.create-row:first-child{border-top:1px solid rgba(255,255,255,0.07)}
+.create-row:hover{padding-left:8px}
+.create-row:hover .create-icon{color:var(--yellow)}
+.create-icon{width:20px;height:20px;color:rgba(255,255,255,0.2);flex-shrink:0;transition:color .2s}
+.create-row span{font-size:16px;font-weight:500;color:rgba(255,255,255,0.75)}
+.create-aside{display:flex;flex-direction:column;gap:20px}
+.aside-block{
+  background:#111;border:1px solid rgba(255,255,255,0.07);
+  border-radius:4px;padding:32px;
+}
+.aside-block p{font-size:14px;line-height:1.7;color:rgba(255,255,255,0.5)}
+.aside-tag{
+  display:inline-block;font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--yellow);background:rgba(245,197,24,.1);border:1px solid rgba(245,197,24,.2);
+  padding:4px 10px;border-radius:4px;margin-bottom:12px;
 }
 
-/* ── NAV ── */
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 18px 48px;
-  background: rgba(8,8,15,0.85);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
+/* ══ CAREERS SECTION ══ */
+.careers-banner{background:var(--paper);color:var(--ink);padding:clamp(64px,8vw,100px) 48px}
+.careers-banner .big-h{color:var(--ink)}
+.careers-banner .big-h .y{color:var(--ink);text-decoration:underline;text-decoration-color:var(--yellow);text-underline-offset:6px}
+.careers-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:rgba(0,0,0,0.1);
+  margin-top:56px;
 }
-
-.nav-logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
+.career-cell{
+  background:var(--paper);padding:36px 32px;
+  display:flex;flex-direction:column;gap:16px;
+  transition:background .2s;
 }
-
-.logo-badge {
-  width: 32px; height: 32px;
-  background: linear-gradient(135deg, var(--gold), #d4a017);
-  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+.career-cell:hover{background:#ece9e0}
+.career-icon-wrap{
+  width:52px;height:52px;
+  border-radius:50%;background:var(--ink);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
 }
-
-.logo-text {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 20px; font-weight: 700;
-  letter-spacing: 0.06em;
-  color: var(--white);
-  line-height: 1;
+.career-icon-wrap svg{width:22px;height:22px;color:var(--yellow)}
+.career-cell h3{
+  font-family:'Syne',sans-serif;font-size:17px;font-weight:700;
+  color:var(--ink);letter-spacing:-0.01em;
 }
+.career-cell p{font-size:13px;color:#555;line-height:1.6}
 
-.logo-text small {
-  display: block;
-  font-size: 9px; font-weight: 500;
-  font-family: 'Inter', sans-serif;
-  letter-spacing: 0.14em;
-  color: var(--muted);
-  text-transform: uppercase;
-  margin-top: 2px;
+/* ══ WHO SECTION ══ */
+.who-wrap{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;background:rgba(255,255,255,0.05)}
+.who-cell{
+  background:var(--ink);padding:64px 40px;
+  display:flex;flex-direction:column;
 }
-
-.nav-links { display: flex; gap: 32px; align-items: center; }
-.nav-links a {
-  font-size: 13px; font-weight: 500;
-  color: var(--muted);
-  text-decoration: none;
-  letter-spacing: 0.04em;
-  transition: color .2s;
+.who-cell:nth-child(2){background:#0d0d0d}
+.who-num{
+  font-family:'Syne',sans-serif;font-size:80px;font-weight:800;
+  color:rgba(255,255,255,0.04);line-height:1;margin-bottom:32px;
+  letter-spacing:-0.04em;
 }
-.nav-links a:hover { color: var(--white); }
-
-.nav-cta {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 13px; font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--white);
-  background: linear-gradient(135deg, var(--purple), var(--cyan));
-  border: none;
-  padding: 10px 22px;
-  border-radius: 6px;
-  cursor: pointer;
-  text-decoration: none;
-  transition: opacity .2s;
+.who-icon-line{
+  display:flex;align-items:center;gap:16px;margin-bottom:28px;
 }
-.nav-cta:hover { opacity: .85; }
-
-/* ── HERO ── */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 120px 48px 80px;
-  position: relative;
-  overflow: hidden;
+.who-icon-line svg{width:32px;height:32px;color:var(--yellow)}
+.who-cell h3{
+  font-family:'Syne',sans-serif;font-size:22px;font-weight:700;
+  letter-spacing:-0.01em;margin-bottom:14px;
 }
+.who-cell p{font-size:14px;color:rgba(255,255,255,0.45);line-height:1.7;font-weight:300}
 
-.hero-glow {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(ellipse 55% 55% at 70% 40%, rgba(124,58,237,.18) 0%, transparent 65%),
-    radial-gradient(ellipse 35% 35% at 20% 75%, rgba(6,182,212,.12) 0%, transparent 60%);
+/* ══ CTA FINAL ══ */
+.cta-final{
+  background:var(--yellow);color:var(--ink);
+  padding:clamp(64px,9vw,120px) 48px;
+  display:grid;grid-template-columns:1fr auto;
+  align-items:center;gap:48px;
 }
-
-/* animated grid */
-.hero-grid {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image:
-    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+.cta-final-left{}
+.cta-final h2{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:clamp(36px,5vw,72px);line-height:0.95;
+  letter-spacing:-0.025em;text-transform:uppercase;
+  max-width:640px;
 }
-
-.hero-eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--cyan);
-  margin-bottom: 28px;
+.cta-final p{font-size:15px;color:rgba(0,0,0,0.55);margin-top:20px;max-width:440px;line-height:1.7}
+.cta-final-btn{
+  display:flex;flex-direction:column;align-items:center;gap:16px;flex-shrink:0;
 }
-
-.hero-eyebrow::before {
-  content: '';
-  width: 28px; height: 1px;
-  background: var(--cyan);
+.btn-dark{
+  display:inline-flex;align-items:center;gap:12px;
+  font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
+  background:var(--ink);color:var(--white);
+  padding:18px 40px;border-radius:100px;
+  text-decoration:none;white-space:nowrap;
+  transition:transform .2s;
 }
+.btn-dark:hover{transform:scale(1.03)}
+.cta-final-btn small{font-size:11px;color:rgba(0,0,0,0.45);letter-spacing:0.06em;text-transform:uppercase}
 
-.hero-title {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: clamp(58px, 10vw, 130px);
-  font-weight: 900;
-  line-height: 0.9;
-  text-transform: uppercase;
-  max-width: 860px;
+/* ══ FOOTER ══ */
+footer{
+  padding:28px 48px;
+  display:flex;align-items:center;justify-content:space-between;
+  border-top:1px solid rgba(255,255,255,0.06);
 }
+.footer-logo img{height:22px;filter:brightness(0) invert(1);opacity:0.5}
+footer p{font-size:12px;color:rgba(255,255,255,0.25);letter-spacing:0.04em}
 
-.hero-title .outline {
-  color: transparent;
-  -webkit-text-stroke: 2px rgba(168,85,247,.5);
+/* ══ REVEAL ══ */
+.r{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.r.on{opacity:1;transform:none}
+.r2{transition-delay:.12s}.r3{transition-delay:.22s}.r4{transition-delay:.32s}
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:960px){
+  nav{padding:0 24px}
+  .nav-right a{display:none}
+  .hero{grid-template-columns:1fr;min-height:auto}
+  .hero-left{padding:80px 24px 48px}
+  .hero-right{display:none}
+  .why-wrap,.learn-wrap,.create-wrap,.cta-final{grid-template-columns:1fr}
+  .learn-right{grid-template-columns:1fr}
+  .careers-grid,.who-wrap{grid-template-columns:1fr 1fr}
+  .cta-final{gap:32px}
+  .s{padding:56px 24px}
+  .careers-banner{padding:56px 24px}
+  footer{flex-direction:column;gap:8px;text-align:center;padding:24px}
 }
-
-.hero-title .grad {
-  background: linear-gradient(90deg, var(--purple-light), var(--cyan-light));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+@media(max-width:600px){
+  .careers-grid,.who-wrap{grid-template-columns:1fr}
+  .cta-final{grid-template-columns:1fr}
+  .cta-final-btn{align-items:flex-start}
 }
-
-.hero-sub {
-  margin-top: 36px;
-  max-width: 420px;
-  color: var(--muted);
-  font-size: 15px;
-  line-height: 1.75;
-}
-
-.hero-btns {
-  display: flex;
-  gap: 16px;
-  margin-top: 48px;
-  flex-wrap: wrap;
-}
-
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 14px; font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--white);
-  background: linear-gradient(135deg, var(--purple), var(--cyan));
-  padding: 14px 32px;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: opacity .2s, transform .2s;
-}
-.btn-primary:hover { opacity: .9; transform: translateY(-2px); }
-
-.btn-ghost {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 14px; font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--white);
-  background: transparent;
-  border: 1px solid rgba(255,255,255,0.15);
-  padding: 14px 32px;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: border-color .2s, transform .2s;
-}
-.btn-ghost:hover { border-color: rgba(255,255,255,.4); transform: translateY(-2px); }
-
-/* hero stats */
-.hero-stats {
-  display: flex;
-  gap: 48px;
-  margin-top: 64px;
-  padding-top: 40px;
-  border-top: 1px solid var(--border);
-}
-
-.stat-val {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 36px; font-weight: 900;
-  background: linear-gradient(90deg, var(--purple-light), var(--cyan-light));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.stat-label {
-  font-size: 12px;
-  color: var(--muted);
-  letter-spacing: 0.06em;
-  margin-top: 4px;
-}
-
-/* ── SECTIONS ── */
-.section {
-  padding: clamp(64px, 9vw, 120px) 48px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.section-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--purple-light);
-  background: rgba(124,58,237,.12);
-  border: 1px solid rgba(124,58,237,.25);
-  padding: 5px 12px;
-  border-radius: 100px;
-  margin-bottom: 24px;
-}
-
-.section-title {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: clamp(34px, 5vw, 60px);
-  font-weight: 900;
-  text-transform: uppercase;
-  line-height: 1;
-  margin-bottom: 20px;
-}
-
-.section-lead {
-  font-size: 16px;
-  color: var(--muted);
-  line-height: 1.8;
-  max-width: 540px;
-}
-
-/* ── CARDS GRID ── */
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 16px;
-  margin-top: 48px;
-}
-
-.card {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 36px 28px;
-  position: relative;
-  overflow: hidden;
-  transition: border-color .25s, transform .25s;
-}
-
-.card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--purple), var(--cyan));
-  opacity: 0;
-  transition: opacity .25s;
-}
-
-.card:hover { border-color: rgba(124,58,237,.4); transform: translateY(-4px); }
-.card:hover::before { opacity: 1; }
-
-.card-icon-wrap {
-  width: 48px; height: 48px;
-  border-radius: 12px;
-  background: rgba(124,58,237,.15);
-  border: 1px solid rgba(124,58,237,.25);
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 20px;
-}
-
-.card-icon-wrap svg { width: 22px; height: 22px; }
-
-.card-title {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 20px; font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  margin-bottom: 10px;
-}
-
-.card-text {
-  font-size: 13px;
-  color: var(--muted);
-  line-height: 1.7;
-}
-
-/* ── TWO-COL ── */
-.two-col {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: center;
-}
-
-/* ── QUOTE BOX ── */
-.quote-box {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--purple-light);
-  border-radius: 12px;
-  padding: 36px 40px;
-}
-
-.quote-box p {
-  font-size: 17px;
-  line-height: 1.75;
-  color: rgba(255,255,255,.8);
-}
-
-/* ── CREATE ITEMS ── */
-.create-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 32px;
-}
-
-.create-item {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 16px 20px;
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  transition: border-color .2s;
-}
-.create-item:hover { border-color: rgba(6,182,212,.3); }
-
-.create-dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--purple-light), var(--cyan));
-  flex-shrink: 0;
-}
-
-.create-item span {
-  font-size: 14px;
-  font-weight: 500;
-  color: rgba(255,255,255,.8);
-}
-
-/* ── CAREERS ── */
-.careers {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 12px;
-  margin-top: 40px;
-}
-
-.career-card {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 20px 24px;
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  transition: border-color .2s, transform .2s;
-}
-.career-card:hover { border-color: rgba(124,58,237,.35); transform: translateX(4px); }
-
-.career-icon {
-  width: 40px; height: 40px; flex-shrink: 0;
-  border-radius: 10px;
-  background: rgba(124,58,237,.12);
-  border: 1px solid rgba(124,58,237,.2);
-  display: flex; align-items: center; justify-content: center;
-}
-.career-icon svg { width: 18px; height: 18px; }
-
-.career-name {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 18px; font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-
-/* ── WHO SECTION ── */
-.who-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-top: 40px;
-}
-
-.who-card {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 32px 24px;
-  text-align: center;
-  transition: border-color .25s, transform .25s;
-}
-.who-card:hover { border-color: rgba(6,182,212,.35); transform: translateY(-4px); }
-
-.who-icon {
-  width: 56px; height: 56px;
-  border-radius: 50%;
-  background: rgba(6,182,212,.1);
-  border: 1px solid rgba(6,182,212,.25);
-  display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 20px;
-}
-.who-icon svg { width: 24px; height: 24px; }
-
-.who-title {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 18px; font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  margin-bottom: 10px;
-}
-
-.who-text {
-  font-size: 13px;
-  color: var(--muted);
-  line-height: 1.65;
-}
-
-/* ── CTA BANNER ── */
-.cta-banner {
-  margin: 0 48px 80px;
-  border-radius: 20px;
-  padding: clamp(48px, 7vw, 80px) 48px;
-  background: linear-gradient(135deg, #1e0a3c 0%, #0a1f2e 100%);
-  border: 1px solid rgba(124,58,237,.3);
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.cta-banner::before {
-  content: '';
-  position: absolute; inset: 0;
-  background:
-    radial-gradient(ellipse 50% 70% at 30% 50%, rgba(124,58,237,.2), transparent),
-    radial-gradient(ellipse 50% 70% at 70% 50%, rgba(6,182,212,.15), transparent);
-  pointer-events: none;
-}
-
-.cta-banner .section-title {
-  font-size: clamp(36px, 5vw, 64px);
-  max-width: 680px;
-  margin: 0 auto 16px;
-}
-
-.cta-banner p {
-  color: var(--muted);
-  font-size: 15px;
-  max-width: 460px;
-  margin: 0 auto 36px;
-  line-height: 1.7;
-}
-
-/* ── FOOTER ── */
-footer {
-  padding: 32px 48px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-top: 1px solid var(--border);
-}
-
-.footer-brand {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 16px; font-weight: 700;
-  letter-spacing: 0.08em;
-}
-
-.footer-brand .accent { color: var(--purple-light); }
-
-footer small {
-  font-size: 12px;
-  color: var(--muted);
-}
-
-/* ── REVEAL ── */
-.reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity .65s ease, transform .65s ease;
-}
-.reveal.visible { opacity: 1; transform: none; }
-
-/* stagger children */
-.stagger .reveal:nth-child(2) { transition-delay: .1s; }
-.stagger .reveal:nth-child(3) { transition-delay: .2s; }
-.stagger .reveal:nth-child(4) { transition-delay: .3s; }
-
-@media (max-width: 900px) {
-  nav { padding: 14px 24px; }
-  .nav-links { display: none; }
-  .hero { padding: 100px 24px 60px; }
-  .hero-stats { gap: 28px; }
-  .section { padding: 56px 24px; }
-  .two-col { grid-template-columns: 1fr; gap: 36px; }
-  .who-grid { grid-template-columns: 1fr 1fr; }
-  .cta-banner { margin: 0 24px 60px; padding: 48px 24px; }
-  footer { flex-direction: column; gap: 10px; text-align: center; padding: 28px 24px; }
-}
-
-@media (max-width: 540px) {
-  .who-grid { grid-template-columns: 1fr; }
-  .hero-stats { flex-wrap: wrap; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .reveal { transition: none; }
-}
+@media(prefers-reduced-motion:reduce){.r{transition:none}}
 </style>
 </head>
 <body>
@@ -573,275 +302,292 @@ footer small {
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="#">
-    <div class="logo-badge"></div>
-    <div class="logo-text">
-      fepi
-      <small>Centro Universitário de Itajubá</small>
-    </div>
+    <img src="https://fepi.br/wp-content/uploads/2025/06/Logotipo-FEPI.webp" alt="FEPI" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+    <span style="display:none;font-family:'Syne',sans-serif;font-size:18px;font-weight:800;letter-spacing:.06em">FEPI</span>
   </a>
-  <div class="nav-links">
-    <a href="#aprender">O que vou aprender</a>
+  <div class="nav-right">
+    <a href="#aprender">Aprender</a>
     <a href="#mercado">Mercado</a>
     <a href="#para-quem">Para quem</a>
+    <a class="nav-pill" href="https://fepi.br" target="_blank">fepi.br</a>
   </div>
-  <a class="nav-cta" href="https://www.fepi.br" target="_blank">fepi.br</a>
 </nav>
 
 <!-- HERO -->
-<div class="hero">
-  <div class="hero-glow"></div>
-  <div class="hero-grid"></div>
-
-  <p class="hero-eyebrow reveal">Apresentação do Curso · FEPI Itajubá</p>
-  <h1 class="hero-title reveal">
-    <span class="grad">Análise</span> e<br>
-    <span class="outline">Desenvolvimento</span><br>
-    de Sistemas
-  </h1>
-  <p class="hero-sub reveal">
-    Transforme sua curiosidade por tecnologia em uma carreira real.
-    No ADS você cria, programa e resolve problemas do mundo.
-  </p>
-
-  <div class="hero-btns reveal">
-    <a class="btn-primary" href="#aprender">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-kicker r"><span></span>Apresentação do Curso · 2025</p>
+    <h1 class="hero-h1 r">
+      <span class="line-thin">Análise e</span>
+      Desenvolvimento
+      <span class="line-accent">de Sistemas</span>
+    </h1>
+    <p class="hero-desc r">
+      Transforme sua curiosidade por tecnologia em uma carreira real.
+      Aprenda a criar, programar e resolver os problemas do mundo digital.
+    </p>
+    <a class="hero-cta r" href="#aprender">
       Conheça o curso
-    </a>
-    <a class="btn-ghost" href="https://www.fepi.br" target="_blank">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-      fepi.br
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
   </div>
 
-  <div class="hero-stats reveal">
-    <div>
-      <div class="stat-val">2,5 anos</div>
-      <div class="stat-label">Duração do curso</div>
+  <div class="hero-right">
+    <div class="hero-logo-big">
+      <img src="https://fepi.br/wp-content/uploads/2025/06/Logotipo-FEPI.webp" alt="FEPI Centro Universitário de Itajubá" onerror="this.style.display='none'">
     </div>
-    <div>
-      <div class="stat-val">100%</div>
-      <div class="stat-label">Presencial em Itajubá</div>
-    </div>
-    <div>
-      <div class="stat-val">+∞</div>
-      <div class="stat-label">Possibilidades de carreira</div>
+    <div class="hero-facts">
+      <div class="hero-fact">
+        <div class="fact-num">2,5</div>
+        <div class="fact-label">Anos de duração</div>
+      </div>
+      <div class="hero-fact">
+        <div class="fact-num">Itajubá</div>
+        <div class="fact-label">Presencial · Minas Gerais</div>
+      </div>
+      <div class="hero-fact">
+        <div class="fact-num">∞</div>
+        <div class="fact-label">Possibilidades de carreira</div>
+      </div>
     </div>
   </div>
-</div>
+</section>
 
 <!-- POR QUE ADS -->
-<div class="section" id="por-que">
-  <div class="two-col">
-    <div>
-      <div class="section-tag reveal">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M9.663 17h4.673M12 3v1m6.364 1.636-.707.707M21 12h-1M4 12H3m3.343-5.657-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
-        Por que escolher ADS?
-      </div>
-      <h2 class="section-title reveal">A tecnologia<br>está em<br>tudo.</h2>
-    </div>
-    <div>
-      <div class="quote-box reveal">
-        <p>
-          O curso de Análise e Desenvolvimento de Sistemas é ideal para quem gosta de tecnologia
-          e quer transformar esse interesse em profissão. Você aprende a criar soluções que
-          fazem parte do dia a dia de milhões de pessoas.
-        </p>
-      </div>
-    </div>
+<div class="why-wrap s-full">
+  <div class="why-cell">
+    <svg class="why-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9.663 17h4.673M12 3v1m6.364 1.636-.707.707M21 12h-1M4 12H3m3.343-5.657-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+    </svg>
+    <div class="eyebrow r"><span class="eyebrow-num">01</span> Por que escolher ADS?</div>
+    <h2 class="big-h r">A tecnologia<br>está em<br><span class="y">todo lugar.</span></h2>
+  </div>
+  <div class="why-cell alt">
+    <svg class="why-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="opacity:0">
+      <circle cx="12" cy="12" r="10"/>
+    </svg>
+    <p class="why-text r">
+      O curso de Análise e Desenvolvimento de Sistemas é ideal para quem gosta de tecnologia
+      e quer transformar esse interesse em profissão.
+    </p>
+    <p class="why-text r" style="margin-top:20px">
+      Durante o curso você aprende a criar soluções que fazem parte da vida de milhões
+      de pessoas — do app que você usa hoje ao sistema que move uma empresa.
+    </p>
   </div>
 </div>
 
 <!-- O QUE VAI APRENDER -->
-<div class="section" id="aprender">
-  <div class="section-tag reveal">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-    O que você vai aprender
+<div class="learn-wrap s-full" id="aprender">
+  <div class="learn-left">
+    <div>
+      <div class="eyebrow r" style="color:rgba(0,0,0,0.35)"><span style="color:var(--ink);font-weight:700">02</span> O que você vai aprender</div>
+      <h2 class="big-h r" style="color:var(--ink)">Grade<br>do<br>curso</h2>
+      <p class="r" style="font-size:14px;color:rgba(0,0,0,0.5);line-height:1.7;margin-top:20px">Programação, sistemas, dados e muito mais — tudo o que o mercado exige.</p>
+    </div>
+    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" width="56" height="56" class="r">
+      <rect width="64" height="64" rx="16" fill="rgba(0,0,0,0.12)"/>
+      <path d="M20 32h24M32 20l12 12-12 12" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
   </div>
-  <h2 class="section-title reveal">Grade do<br>curso</h2>
 
-  <div class="cards stagger">
-    <div class="card reveal">
-      <div class="card-icon-wrap">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-      </div>
-      <h3 class="card-title">Programação</h3>
-      <p class="card-text">Lógica, estruturas de dados e as linguagens mais usadas no mercado.</p>
+  <div class="learn-right">
+    <div class="learn-item r">
+      <svg class="learn-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+      </svg>
+      <h3>Programação</h3>
+      <p>Lógica, algoritmos e as linguagens mais usadas no mercado. A base de tudo.</p>
     </div>
-    <div class="card reveal">
-      <div class="card-icon-wrap">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-      </div>
-      <h3 class="card-title">Desenvolvimento Web</h3>
-      <p class="card-text">Sites modernos, sistemas completos e interfaces para a web.</p>
+    <div class="learn-item r r2">
+      <svg class="learn-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="2"/>
+        <path d="M3 9h18M9 21V9"/>
+      </svg>
+      <h3>Desenvolvimento Web</h3>
+      <p>Sites modernos, sistemas completos e interfaces responsivas para a web.</p>
     </div>
-    <div class="card reveal">
-      <div class="card-icon-wrap">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
-      </div>
-      <h3 class="card-title">Banco de Dados</h3>
-      <p class="card-text">Modelagem e gerenciamento de dados relacionais e não-relacionais.</p>
+    <div class="learn-item r r3">
+      <svg class="learn-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <ellipse cx="12" cy="5" rx="9" ry="3"/>
+        <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+      </svg>
+      <h3>Banco de Dados</h3>
+      <p>Modelagem, criação e gerenciamento de dados relacionais e não-relacionais.</p>
     </div>
-    <div class="card reveal">
-      <div class="card-icon-wrap">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      </div>
-      <h3 class="card-title">Engenharia de Software</h3>
-      <p class="card-text">Metodologias ágeis, boas práticas e processos profissionais.</p>
+    <div class="learn-item r r4">
+      <svg class="learn-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      </svg>
+      <h3>Engenharia de Software</h3>
+      <p>Metodologias ágeis, boas práticas e processos de desenvolvimento profissional.</p>
     </div>
   </div>
 </div>
 
-<!-- O QUE VOCÊ PODERÁ CRIAR -->
-<div class="section" id="criar">
-  <div class="two-col">
+<!-- O QUE PODE CRIAR -->
+<div class="s" id="criar">
+  <div class="create-wrap">
     <div>
-      <div class="section-tag reveal">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        O que você poderá criar
-      </div>
-      <h2 class="section-title reveal">Ideias em<br>projetos<br>reais.</h2>
-    </div>
-    <div>
+      <div class="eyebrow r"><span class="eyebrow-num">03</span> O que você poderá criar</div>
+      <h2 class="big-h r">Ideias<br>em projetos<br><span class="y">reais.</span></h2>
       <div class="create-list">
-        <div class="create-item reveal">
-          <div class="create-dot"></div>
+        <div class="create-row r">
+          <svg class="create-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
           <span>Sites e aplicações web completas</span>
         </div>
-        <div class="create-item reveal">
-          <div class="create-dot"></div>
+        <div class="create-row r r2">
+          <svg class="create-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
           <span>Aplicativos mobile e desktop</span>
         </div>
-        <div class="create-item reveal">
-          <div class="create-dot"></div>
+        <div class="create-row r r3">
+          <svg class="create-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
           <span>Sistemas de gestão e automações</span>
         </div>
-        <div class="create-item reveal">
-          <div class="create-dot"></div>
+        <div class="create-row r r4">
+          <svg class="create-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
           <span>APIs e integrações entre plataformas</span>
         </div>
-        <div class="create-item reveal">
-          <div class="create-dot"></div>
+        <div class="create-row r">
+          <svg class="create-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           <span>Seus próprios projetos e startups</span>
         </div>
       </div>
     </div>
+    <div class="create-aside">
+      <div class="aside-block r">
+        <span class="aside-tag">Sem pré-requisitos</span>
+        <p>Não precisa saber programar antes de entrar. O curso prepara o estudante desde os fundamentos, do zero ao profissional.</p>
+      </div>
+      <div class="aside-block r r2">
+        <span class="aside-tag">Mercado em alta</span>
+        <p>A área de TI está entre as que mais crescem no Brasil. Profissionais formados em ADS têm amplas oportunidades em qualquer setor da economia.</p>
+      </div>
+      <div class="aside-block r r3" style="background:rgba(245,197,24,.07);border-color:rgba(245,197,24,.2)">
+        <span class="aside-tag">FEPI · Itajubá</span>
+        <p style="color:rgba(255,255,255,0.7)">Formação presencial na cidade de Itajubá, MG — com infraestrutura, professores experientes e comunidade ativa.</p>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- MERCADO DE TRABALHO -->
-<div class="section" id="mercado">
-  <div class="section-tag reveal">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-    Mercado de trabalho
+<!-- MERCADO -->
+<div class="careers-banner s-full" id="mercado">
+  <div style="max-width:1280px;margin:0 auto;padding:0 48px">
+    <div class="eyebrow r" style="color:var(--muted)"><span class="eyebrow-num" style="color:var(--ink);opacity:.4">04</span> Mercado de trabalho</div>
+    <h2 class="big-h r" style="color:var(--ink)">Onde você<br>pode <span class="y">atuar?</span></h2>
   </div>
-  <h2 class="section-title reveal">Onde você<br>pode atuar?</h2>
-  <p class="section-lead reveal">Tecnologia está em todos os setores. Quem se forma em ADS tem oportunidades em qualquer área do mercado.</p>
-
-  <div class="careers">
-    <div class="career-card reveal">
-      <div class="career-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+  <div class="careers-grid" style="max-width:1280px;margin:56px auto 0;padding:0 48px">
+    <div class="career-cell r">
+      <div class="career-icon-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
       </div>
-      <span class="career-name">Desenvolvedor de Software</span>
+      <h3>Desenvolvedor de Software</h3>
+      <p>Cria sistemas, apps e soluções digitais para empresas e usuários.</p>
     </div>
-    <div class="career-card reveal">
-      <div class="career-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <div class="career-cell r r2">
+      <div class="career-icon-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
       </div>
-      <span class="career-name">Analista de Sistemas</span>
+      <h3>Analista de Sistemas</h3>
+      <p>Estuda e melhora os processos de TI dentro das organizações.</p>
     </div>
-    <div class="career-card reveal">
-      <div class="career-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+    <div class="career-cell r r3">
+      <div class="career-icon-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
       </div>
-      <span class="career-name">Administrador de Banco de Dados</span>
+      <h3>Administrador de Banco de Dados</h3>
+      <p>Gerencia e garante a segurança das informações de uma organização.</p>
     </div>
-    <div class="career-card reveal">
-      <div class="career-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+    <div class="career-cell r">
+      <div class="career-icon-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
       </div>
-      <span class="career-name">Engenheiro de Qualidade / QA</span>
+      <h3>Engenheiro de Qualidade</h3>
+      <p>Testa e garante que sistemas e softwares funcionam sem falhas.</p>
     </div>
-    <div class="career-card reveal">
-      <div class="career-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+    <div class="career-cell r r2">
+      <div class="career-icon-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
       </div>
-      <span class="career-name">Analista de Infraestrutura</span>
+      <h3>Analista de Infraestrutura</h3>
+      <p>Mantém redes, servidores e toda a estrutura tecnológica funcionando.</p>
     </div>
-    <div class="career-card reveal">
-      <div class="career-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+    <div class="career-cell r r3">
+      <div class="career-icon-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
       </div>
-      <span class="career-name">Gestor de TI / Product Owner</span>
+      <h3>Gestor de TI / Product Owner</h3>
+      <p>Lidera equipes e decisões estratégicas em produtos e projetos digitais.</p>
     </div>
   </div>
 </div>
 
 <!-- PARA QUEM É -->
-<div class="section" id="para-quem">
-  <div class="section-tag reveal">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-    Para quem é o curso
+<div class="who-wrap s-full" id="para-quem">
+  <div class="who-cell">
+    <div class="who-num">01</div>
+    <div class="eyebrow r" style="margin-bottom:16px"><span class="eyebrow-num">05</span> Para quem é o curso</div>
+    <div class="who-icon-line r">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/>
+      </svg>
+      <h3>O curioso</h3>
+    </div>
+    <p>Você passa horas tentando entender como um app funciona por baixo. Quer criar, não só usar.</p>
   </div>
-  <h2 class="section-title reveal">Não precisa<br>saber<br>programar.</h2>
-
-  <div class="who-grid">
-    <div class="who-card reveal">
-      <div class="who-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
-      </div>
-      <h3 class="who-title">Curioso</h3>
-      <p class="who-text">Você gosta de entender como as coisas funcionam por dentro e quer desvendar a tecnologia.</p>
+  <div class="who-cell">
+    <div class="who-num">02</div>
+    <div class="who-icon-line r">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+      </svg>
+      <h3>O apaixonado por tech</h3>
     </div>
-    <div class="who-card reveal">
-      <div class="who-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-      </div>
-      <h3 class="who-title">Apaixonado por tech</h3>
-      <p class="who-text">Fica horas no computador, gosta de jogos, apps e quer criar as próprias soluções.</p>
+    <p>Games, apps, gadgets — tecnologia é paixão. Agora você quer profissionalizar esse interesse.</p>
+  </div>
+  <div class="who-cell">
+    <div class="who-num">03</div>
+    <div class="who-icon-line r">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9.663 17h4.673M12 3v1m6.364 1.636-.707.707M21 12h-1M4 12H3m3.343-5.657-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+      </svg>
+      <h3>O resolvedor</h3>
     </div>
-    <div class="who-card reveal">
-      <div class="who-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><path d="M9.663 17h4.673M12 3v1m6.364 1.636-.707.707M21 12h-1M4 12H3m3.343-5.657-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
-      </div>
-      <h3 class="who-title">Resolvedor</h3>
-      <p class="who-text">Gosta de desafios e quer usar a criatividade para transformar ideias em projetos reais.</p>
-    </div>
+    <p>Você gosta de desafios e quer usar criatividade e lógica para construir soluções do mundo real.</p>
   </div>
 </div>
 
 <!-- CTA FINAL -->
-<div class="cta-banner">
-  <div class="section-tag reveal" style="margin: 0 auto 24px; width: fit-content;">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-    Próximo passo
+<div class="cta-final s-full">
+  <div class="cta-final-left">
+    <h2 class="r">Construa<br>seu futuro<br>com tech.</h2>
+    <p class="r">No ADS da FEPI Itajubá você aprende, desenvolve projetos reais e se prepara para uma das carreiras mais dinâmicas e bem pagas do mercado.</p>
   </div>
-  <h2 class="section-title reveal">Construa seu futuro<br>com tecnologia</h2>
-  <p class="reveal">
-    No ADS da FEPI Itajubá você aprende, cria projetos reais e se prepara para
-    uma das carreiras mais bem pagas e em alta do mercado.
-  </p>
-  <a class="btn-primary reveal" href="https://www.fepi.br" target="_blank" style="margin: 0 auto;">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-    Acesse fepi.br
-  </a>
+  <div class="cta-final-btn r">
+    <a class="btn-dark" href="https://fepi.br" target="_blank">
+      Acessar fepi.br
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <small>Centro Universitário de Itajubá</small>
+  </div>
 </div>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-brand">fepi <span class="accent">·</span> ADS</div>
-  <small>Centro Universitário de Itajubá — Itajubá, MG</small>
+  <div class="footer-logo">
+    <img src="https://fepi.br/wp-content/uploads/2025/06/Logotipo-FEPI.webp" alt="FEPI" onerror="this.outerHTML='<span style=\'font-family:Syne,sans-serif;font-size:14px;font-weight:800;color:rgba(255,255,255,0.3)\'>FEPI</span>'">
+  </div>
+  <p>ADS · Centro Universitário de Itajubá · Itajubá, MG</p>
 </footer>
 
 <script>
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
-  });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+const io = new IntersectionObserver(es => {
+  es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target) } })
+}, { threshold: 0.08 });
+document.querySelectorAll('.r').forEach(el => io.observe(el));
 </script>
 </body>
 </html>
